@@ -32,8 +32,22 @@ class LinkedList
   end
 
   def prepend value
-    @first = Item.new(value).point(@first)
+    new_item = Item.new(value).point(@first)
+    @first = new_item
     self
+  end
+
+  def get_item index
+    return nil if !@first
+    next_item = @first
+    index.times do
+      next_item = next_item.next
+    end
+    next_item
+  end
+
+  def get index
+    return get_item(index).value
   end
 
   class Item
@@ -54,3 +68,6 @@ class LinkedList
   end
 
 end
+
+require "pry"
+binding.pry
