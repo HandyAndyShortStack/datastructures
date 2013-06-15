@@ -47,7 +47,7 @@ class LinkedList
   end
 
   def get index
-    return get_item(index).value
+    get_item(index).value
   end
 
   class Item
