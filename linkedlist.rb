@@ -13,7 +13,6 @@ class LinkedList
   end
 
   def last_item
-    return nil if !@first
     next_item = @first
     while next_item.next
       next_item = next_item.next
@@ -26,19 +25,20 @@ class LinkedList
   end
 
   def append value
-    @first = Item.new(value) if !@first
+    if !@first
+      @first = Item.new(value)
+      return self
+    end
     self.last_item.point Item.new(value)
     self
   end
 
   def prepend value
-    new_item = Item.new(value).point(@first)
-    @first = new_item
+    @first = Item.new(value).point(@first)
     self
   end
 
   def get_item index
-    return nil if !@first
     next_item = @first
     index.times do
       next_item = next_item.next
@@ -68,6 +68,3 @@ class LinkedList
   end
 
 end
-
-require "pry"
-binding.pry
